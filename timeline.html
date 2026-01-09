@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" type="image/png" href="./img/CILKGax.png">
+    <title>Nhân vật chính hôm nay</title>	    
+    <link type="text/css" rel="stylesheet" href="./css/default.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/jscex.min.js"></script>
+    <script type="text/javascript" src="./js/jscex-parser.js"></script>
+    <script type="text/javascript" src="./js/jscex-jit.js"></script>
+    <script type="text/javascript" src="./js/jscex-builderbase.min.js"></script>
+    <script type="text/javascript" src="./js/jscex-async.min.js"></script>
+    <script type="text/javascript" src="./js/jscex-async-powerpack.min.js"></script>
+    <script type="text/javascript" src="./js/functions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/love.js" charset="utf-8"></script>
+
+    <style>
+        /* Font đồng hồ */
+        #clock {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="buttons">
+        <a href="index.html" class="btn btn-bir">Sinh nhật</a>
+        <a href="timeline.html" class="btn btn-timeline">Nhân vật chính hôm nay</a>
+        <a href="gallery/index.html" class="btn btn-gallery">Tuổi mới, cùng nhau 🦀🐸</a>
+    </div>
+
+    <div id="main">
+        <div id="wrap">
+            <div id="text">
+                <div id="code">
+                    <font color="#3500ff">
+                        <span class="say">Happy birthday, tuổi mới lớn xinh như loa 🌸!</span><br>
+                        <span class="say"></span><br>
+                        <span class="say">Chúc mừng sinh nhật mày – đứa bạn thân mà tao luôn cảm thấy may mắn vì có trong cuộc đời. Thêm một tuổi mới không chỉ là thêm số, mà là thêm những trải nghiệm, những vấp ngã, những lần tự đứng dậy và cả những điều mày đã lặng lẽ vượt qua mà không cần ai biết. Tao mong khi nhìn lại, mày sẽ thấy mình đã giỏi hơn, mạnh mẽ hơn và xứng đáng với tất cả những điều tốt đẹp phía trước.</span><br>
+                        <span class="say">Tuổi mới, tao chúc mày có nhiều khoảnh khắc để cười, ít chuyện để buồn, làm gì cũng có cơ hội mà tiến. Mong mày vẫn giữ được cái chân thành, nhiệt tình và nét ‘khờ dễ thương’ rất riêng – để mày luôn là mày, và để tình bạn tụi mình lúc nào cũng đầy tiếng cười như bây giờ.</span><br>
+                        <span class="say">Tao biết có những lúc mày mệt, mày áp lực, mày thấy bản thân chưa đủ giỏi hay cuộc sống quá nặng nề. Nhưng tao cũng biết mày chưa từng bỏ cuộc. Vì vậy, tao mong năm nay sẽ nhẹ nhàng hơn với mày, bình yên hơn một chút, để những điều mày đang âm thầm cố gắng sớm nở hoa theo cách đẹp nhất.</span><br>
+                        <span class="say">Cảm ơn mày vì đã luôn ở đây – lắng nghe, thấu hiểu và cho tao cảm giác có một tình bạn đủ sâu, đủ thật. Dù sau này mỗi đứa có đi những con đường khác nhau, tao vẫn mong mày luôn hạnh phúc, được yêu thương tử tế và sống trọn vẹn với những ước mơ của riêng mình.</span><br>
+                        <span class="say">Tuổi mới thật rực rỡ nhé, bạn thân của tao 💗</span><br>
+                        <span class="say"></span><br>
+                        <span class="say"><span class="space"></span>Bước sang chương mới👋</span>
+                        <span class="say"> </span><br>
+                        <span class="say"><span class="space"></span>Học cách thương mình nhiều hơn 💚</span>
+                        <span class="say"> </span><br>
+                        <span class="say"><span class="space"></span>Happy Birthday, Ánh ếch ngốc nghếch! 🎉🎂</span>
+						<span class="say"> </span><br>
+                        <span class="say"><span class="space"><span class="space"></span>-- Bạn thân 🦀 --</span>
+                    </font>
+                </div>
+            </div>
+
+            <!-- Phần đồng hồ -->
+            <div id="clock-container">
+                <p id="clock">🕒 <span>Đang tải...</span></p>
+            </div>
+
+            <canvas id="canvas" width="1100" height="680"></canvas>
+        </div>
+    </div>
+
+    <!-- Phần nhạc -->
+    <audio id="player" autoplay loop>
+        <source src="./music/music.mp3" type="audio/mp3" />
+    </audio>
+
+    <body>
+       
+        <script>
+            (function(){
+                var clock = document.getElementById("clock").getElementsByTagName("span")[0];
+                var startDate = new Date(2006, 0, 12); // 12/12/2005 (Tháng 2 là 1 vì JS tính tháng từ 0)
+    
+                function updateClock() {
+                    var now = new Date();
+    
+                    var years = now.getFullYear() - startDate.getFullYear();
+                    var months = now.getMonth() - startDate.getMonth();
+                    var days = now.getDate() - startDate.getDate();
+    
+                    if (days < 0) {
+                        months--;
+                        var prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+                        days += prevMonth;
+                    }
+    
+                    if (months < 0) {
+                        years--;
+                        months += 12;
+                    }
+    
+                    var hours = now.getHours();
+                    var minutes = now.getMinutes();
+                    var seconds = now.getSeconds();
+    
+                    clock.innerHTML = `${years} năm, ${months} tháng, ${days} ngày, ${hours} giờ, ${minutes} phút, ${seconds} giây`;
+                }
+    
+                updateClock();
+                setInterval(updateClock, 1000);
+           
+            var canvas = $('#canvas');
+                var width = canvas.width();
+                var height = canvas.height();        
+                canvas.attr("width", width);
+                canvas.attr("height", height);
+    
+                var opts = {
+                    seed: {
+                        x: width / 2 - 20,
+                        color: "rgb(190, 26, 37)",
+                        scale: 2
+                    },
+                    branch: [[535, 680, 570, 250, 500, 200, 30, 100, []]],
+                    bloom: {
+                        num: 700,
+                        width: 1080,
+                        height: 650
+                    },
+                    footer: {
+                        width: 1200,
+                        height: 5,
+                        speed: 10
+                    }
+                }
+    
+                var tree = new Tree(canvas[0], width, height, opts);
+                var seed = tree.seed;
+                var foot = tree.footer;
+                var hold = 1;
+    
+                canvas.click(function() {
+                    hold = 0;
+                    canvas.unbind("click");
+                });
+    
+                var seedAnimate = eval(Jscex.compile("async", function () {
+                    seed.draw();
+                    while (hold) {
+                        $await(Jscex.Async.sleep(10));
+                    }
+                    while (seed.canScale()) {
+                        seed.scale(0.95);
+                        $await(Jscex.Async.sleep(10));
+                    }
+                }));
+    
+                var growAnimate = eval(Jscex.compile("async", function () {
+                    do {
+                        tree.grow();
+                        $await(Jscex.Async.sleep(10));
+                    } while (tree.canGrow());
+                }));
+    
+                var flowAnimate = eval(Jscex.compile("async", function () {
+                    do {
+                        tree.flower(2);
+                        $await(Jscex.Async.sleep(10));
+                    } while (tree.canFlower());
+                }));
+    
+                var moveAnimate = eval(Jscex.compile("async", function () {
+                    tree.snapshot("p1", 240, 0, 610, 680);
+                    while (tree.move("p1", 500, 0)) {
+                        foot.draw();
+                        $await(Jscex.Async.sleep(10));
+                    }
+                }));
+    
+                var textAnimate = eval(Jscex.compile("async", function () {
+                    $("#code").show().typewriter();
+                    $("#clock-container").fadeIn(500);
+                }));
+    
+                var runAsync = eval(Jscex.compile("async", function () {
+                    $await(seedAnimate());
+                    $await(growAnimate());
+                    $await(flowAnimate());
+                    $await(moveAnimate());
+                    textAnimate().start();
+                }));
+    
+                runAsync().start();
+            })();
+        </script>
+    <script>
+        function createHeart() {
+            var heart = document.createElement("div");
+            heart.className = "falling-heart";
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(heart);
+    
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        
+        setInterval(createHeart, 500);
+    </script>
+    
+    <style>
+        .falling-heart {
+            position: fixed;
+            top: 0;
+            font-size: 20px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(0vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+    
+</body>
+</html>

@@ -1,44 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="./app.js" defer></script>
-    <title>Document</title>
-</head>
-<body>
-    <div class="loading">
-        <div class="boxHeartImg">
-            <div class="heartItem item1">
-                <img src="./image/heart.png" alt="">
-            </div>
-            <div class="heartItem item2">
-                <img src="./image/heart.png" alt="">
-            </div>
-            <div class="heartItem item3">
-                <img src="./image/heart.png" alt="">
-            </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="./img/CILKGax.png" />
+        <!-- 1. Tiêu đề của file index -->
+        <title>Happy birthday</title>
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+    <body class="page__main">
+        <div class="buttons">
+            <!-- Chữ ở menu bạn có thể sửa lại theo ý của bạn -->
+            <a href="index.html" class="btn btn-bir">Sinh nhật</a>
+            <a href="timeline.html" class="btn btn-timeline">Nhân vật chính hôm nay</a>
+            <a href="gallery/index.html" class="btn btn-gallery">Tuổi mới, cùng nhau 🦀🐸</a>
         </div>
-        <div class="heartBox">
-            <div class="heart"></div>
-        </div>
-        <div class="progress-bar">
-            <div class="progress"></div>
-            <div class="percent">100%</div>
-        </div>
-        <h2 class="textBox">
-            <span class="textLoad">Loading apology</span>
-            <span class="cricle1">.</span>
-            <span class="cricle2">.</span>
-            <span class="cricle3">.</span>
-        </h2>
-        <div class="buttonCLick">
-            <img src="./image/cursor.png" alt="">
-            <div class="button">
-                <p class="textBtn"></p>
-            </div>
-        </div>
-    </div>
-</body>
+
+        <!-- 2. Phần ảnh của người bạn mún chúc -->
+        <img src="./img/MyAvatar.jpg" alt="" class="cover" />
+
+        <!-- 3. Phần nhạc -->
+        <audio id="player" autoplay loop>
+            <source src="./music/HBTY.mp3" type="audio/mp3" />
+        </audio>
+    </body>
 </html>
